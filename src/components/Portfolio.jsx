@@ -11,12 +11,13 @@ const Portfolio = () => {
  const[data,setData]=useState([]);
   
   useEffect(()=>{
-    axios.get("https://app.netlify.com/sites/stirring-marigold-75a400/overview").then(
+    axios.get("https://concerned-jay-belt.cyclic.app/api/testimonial").then(
       response=>{
         const  formatedData=response.data.data.map(item=>({
  id:item._id,
  image:item.image,
- title:item.github,
+ title:item.title,
+ github:item.github,
  demo:item.demo
         })
          
@@ -29,51 +30,33 @@ const Portfolio = () => {
     })
   },[])
   return (
-    <section id='portfolio'>
-      <h5>My Recent Work</h5>
+
+  <section id='portfolio'>
+    <h5>My Recent Work</h5>
       <h2>Portfolio</h2>
+
       <div className="container portfolio__container">
-         <article className='portfolio__item'>
+        {
+        {data.map(({id,image,title,github,demo}) => (
+         <article key={id} className='portfolio__item'>
           <div className="portfolio__item-image">
             <img src={Portfolio1} alt="Glassmorphic Bank card" />
           </div>
-          <h3>This is a portfolio item title</h3>
-          <a href="https://githup.com" className='btn'>Github</a>
-          <a href="https://githup.com/MaivaC/" className='btn btn-primary' target='_blank'>Live Demo</a>
-         </article>
-      <article className='portfolio__item'>
-          <div className="portfolio__item-image">
-            <img src={Portfolio2} alt="Glassmorphic Bank card" />
+          <h3>T{title}</h3>
+          <div className="portfolio__item-cta">
+            
+           
+          <a href={github}className='btn' target='_blank'rel='noopener noreferrer'>Github</a>
+          <a href="demo" className='btn btn-primary' target='_blank'rel='noopener noreferrer'>Live Demo</a>
           </div>
-          <h3>This is a portfolio item title</h3>
-          <a href="https://githup.com" className='btn'>Github</a>
-          <a href="https://githup.com/MaivaC/" className='btn btn-primary' target='_blank'>Live Demo</a>
          </article>
+))}
+         
 
-         <article className='portfolio__item'>
-          <div className="portfolio__item-image">
-            <img src={Portfolio3} alt="Clothing Website" />
-          </div>
-          <h3>This is a portfolio item title</h3>
-          <a href="https://githup.com" className='btn'>Github</a>
-          <a href="https://githup.com/MaivaC/" className='btn btn-primary' target='_blank'>Live Demo</a>
-         </article>
-
-      
-         <article className='portfolio__item'>
-          <div className="portfolio__item-image">
-            <img src={Portfolio2} alt="Shopping Website" />
-          </div>
-          <h3>This is a portfolio item title</h3>
-          <a href="https://githup.com" className='btn'>Github</a>
-          <a href="https://githup.com/NyandoOnongwene/" className='btn btn-primary' target='_blank'>Live Demo</a>
-         </article>
-        
-      </div>
-
-       
-    </section>
+        }    
+   </div>
+  </section>
+)
   
-  )
-}
+};
 export default Portfolio;
