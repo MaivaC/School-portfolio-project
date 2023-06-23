@@ -16,7 +16,7 @@ const Portfolio = () => {
         const  formatedData=response.data.data.map(item=>({
  id:item._id,
  image:item.image,
- title:title.github,
+ title:item.github,
  demo:item.demo
         })
          
