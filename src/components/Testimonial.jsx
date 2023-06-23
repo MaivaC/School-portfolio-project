@@ -1,4 +1,5 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react';
+import axios from 'axios';
 import './testimonial.css'
 import T1 from '../assets/book.jpg'
 import T2 from '../assets/book.jpg'
@@ -13,41 +14,30 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+const Testimonials = () => {
+ const[data,setData]=useState([]);
+  
+  useEffect(()=>{
+    axios.get("https://concerned-jay-belt.cyclic.app/api/testimonial").then(
+      response=>{
+        const  formatedData=response.data.data.map(item=>({
+ id:item._id,
+avatar:item.avatar,
+ name:item.name,
+ review:item.review,
 
-const data = [
-    {
-      id: 1,
-      review:
-        "Working with Metagne has been such an amazing journey. He is commited to the work and always deliver in time",
-      avatar: T1,
-      name: "Mbo Valentine",
-    },
-    {
-      id: 2,
-      review:
-        "Metagne is the best frontend developer I have ever worked with",
-      avatar: T2,
-      name: "Mbah Elsie",
-    },
-    {
-      id: 3,
-      review:
-        "Working with Metagne has been really awesome. He is always prompt deliver high quality services and he always deliver",
-      avatar: T3,
-      name: "Arrah Mbone",
-    },
-    {
-      id: 4,
-      review:
-        "Working with Metagne as my assistant Junior Frontend Development has really doubed my productivity",
-      avatar: T2,
-      name: "Njang Elsie",
-
-    },
-  ];
-
-export const Testimonial = () => {
-  return (
+        })
+         
+        );
+        setData(formatedData)
+  }
+      
+    ).catch(error=>{
+      console.log("Error fetching testimonial data:",error);
+    })
+  },[])
+    
+return (
      <section id='testimonials'>
       <h5>Review from Clients</h5>
       <h2>Testimonials</h2>
@@ -82,4 +72,5 @@ export const Testimonial = () => {
     </section>
   )
 }
+
 export default Testimonial;

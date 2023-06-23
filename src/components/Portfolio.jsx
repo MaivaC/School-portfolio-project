@@ -11,7 +11,7 @@ const Portfolio = () => {
  const[data,setData]=useState([]);
   
   useEffect(()=>{
-    axios.get("https://concerned-jay-belt.cyclic.app/api/testimonial").then(
+    axios.get("https://concerned-jay-belt.cyclic.app/api/portfolio").then(
       response=>{
         const  formatedData=response.data.data.map(item=>({
  id:item._id,
@@ -37,7 +37,7 @@ const Portfolio = () => {
 
       <div className="container portfolio__container">
         {
-        {data.map(({id,image,title,github,demo}) => (
+        data.map(({id,image,title,github,demo}) => (
          <article key={id} className='portfolio__item'>
           <div className="portfolio__item-image">
             <img src={Portfolio1} alt="Glassmorphic Bank card" />
@@ -53,7 +53,7 @@ const Portfolio = () => {
 ))}
          
 
-        }    
+        
    </div>
   </section>
 )
