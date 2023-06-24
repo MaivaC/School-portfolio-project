@@ -14,7 +14,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const Testimonials = () => {
+const Testimonial = () => {
  const[data,setData]=useState([]);
   
   useEffect(()=>{
