@@ -43,7 +43,7 @@ const [email, setEmail] = useState('')
  const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_h2mxx68', 'template_rw00c9p', form.current, 'FYkKCQv3_vgzQlCGKT')
+    emailjs.sendForm('service_h2mxx68', 'template_rw00c9p', form.current, 'YkKCQv3_vgzQlCGKT')
     
     e.target.reset()
   };
